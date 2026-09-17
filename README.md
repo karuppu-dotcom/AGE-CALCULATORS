@@ -1,128 +1,57 @@
-DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age Calculator</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 20px;
-  }
-  .card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 32px 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    max-width: 360px;
-    width: 100%;
-  }
-  h1 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 24px;
-    color: #2575fc;
-  }
-  label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 6px;
-    margin-top: 16px;
-  }
-  input[type="date"] {
-    width: 100%;
-    padding: 10px 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 15px;
-    box-sizing: border-box;
-  }
-  input[type="date"]:focus {
-    outline: none;
-    border-color: #2575fc;
-  }
-  button {
-    width: 100%;
-    margin-top: 22px;
-    padding: 12px;
-    background: #2575fc;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  button:hover {
-    background: #1a5fd6;
-  }
-  .result {
-    margin-top: 20px;
-    padding: 16px;
-    background: #f5f7ff;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-    min-height: 20px;
-  }
-  .note {
-    margin-top: 12px;
-    font-size: 12px;
-    color: #999;
-    text-align: center;
-  }
-</style>
-</head>
-<body>
+# 📅 Age Calculator 🗓️➖
 
-<div class="card">
-  <h1>📅 Age Calculator</h1>
+A single-screen Android app, built with **MIT App Inventor**, that compares two dates and tells you the gap between them in years and months — just tap and pick, no typing needed.
 
-  <label for="date1">First Date</label>
-  <input type="date" id="date1">
+## How it works
 
-  <label for="date2">Second Date</label>
-  <input type="date" id="date2">
+1. Tap **DatePicker1** and choose the first date
+2. Tap **DatePicker2** and choose the second date
+3. The app shows each selected date on screen as you pick it
+4. Tap **Button1** to calculate
+5. It shows the result as **years.months**, e.g. *"26.0"*
 
-  <button onclick="calculateDifference()">Calculate</button>
+## Features
 
-  <div class="result" id="result">—</div>
-  <div class="note">Result shown as years.months</div>
-</div>
+- 📆 Two-tap date selection via native Android date picker — no manual entry
+- 🏷️ Live label updates as each date is selected
+- 🧮 One-tap year/month difference calculation
+- 🖥️ Simple single-screen UI — works entirely offline
 
-<script>
-  function calculateDifference() {
-    const d1 = document.getElementById('date1').value;
-    const d2 = document.getElementById('date2').value;
-    const resultEl = document.getElementById('result');
+## Tech Stack
 
-    if (!d1 || !d2) {
-      resultEl.textContent = "Please pick both dates";
-      return;
-    }
+- **Platform:** MIT App Inventor (block-based, no native code)
+- **Components:** `DatePicker1`, `DatePicker2`, `Label1`, `Label2`, `Label3`, `Button1`, `VerticalArrangement1`
+- **Permissions:** None — no internet or microphone required
 
-    const date1 = new Date(d1);
-    const date2 = new Date(d2);
+## Example
 
-    // Matches the original MIT App Inventor block logic:
-    // simple Year - Year and Month - Month subtraction, no borrowing.
-    const yearDiff = date2.getFullYear() - date1.getFullYear();
-    const monthDiff = (date2.getMonth() + 1) - (date1.getMonth() + 1);
+| DatePicker1  | DatePicker2  | Result   |
+|--------------|--------------|----------|
+| 15/09/2000   | 15/09/2026   | 26.0     |
+| 01/01/2005   | 15/09/2026   | 21.8     |
+| 20/03/1998   | 15/09/2026   | 28.6     |
+| 10/12/2020   | 15/09/2026   | 6.-3     |
 
-    resultEl.textContent = `${yearDiff}.${monthDiff}`;
-  }
-</script>
+## Screenshot
 
-</body>
-</html>
+![App Screenshot](Screenshot%20(placeholder).png)
+
+*The app in action — showing both selected dates and the computed year/month difference.*
+
+## Limitations (v1.0)
+
+- Result is a raw year/month subtraction, not a calendar-adjusted duration — the day-of-month isn't factored in
+- No borrowing between year and month differences, so the month value can come out negative (see last example above)
+- The date-display block for the second picker currently reads from the first picker's date instead of its own
+- No validation if the first date is later than the second date
+- No calculation history — resets each session
+
+## Future Improvements
+
+- Fix the second date-picker label to reference its own component
+- Add day-level precision with proper calendar borrowing
+- Validate date order and show an error for invalid input
+- Friendlier result format (e.g. "26 years, 0 months" instead of "26.0")
+- Persistent history of past comparisons
+
+---
