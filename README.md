@@ -55,3 +55,4 @@ A single-screen Android app, built with **MIT App Inventor**, that compares two 
 - Persistent history of past comparisons
 
 ---
+*Built as a mini project — SRS follows IEEE Std 830-1998 conventions.*
