@@ -34,7 +34,7 @@ A single-screen Android app, built with **MIT App Inventor**, that compares two 
 
 ## Screenshot
 
-![App Screenshot](Screenshot%20(placeholder).png)
+![App Screenshot](IMG-20260917-WA0001.jpg)
 
 *The app in action — showing both selected dates and the computed year/month difference.*
 
